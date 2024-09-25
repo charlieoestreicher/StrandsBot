@@ -6,10 +6,9 @@ import time
 from config.logger import logger
 
 # 8x6 grid
-driver = webdriver.Chrome()
 
 
-def open_grid_board():
+def open_grid_board(driver):
     driver.get("https://www.nytimes.com/games/strands")
     start_button = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located(
@@ -27,7 +26,7 @@ def open_grid_board():
     close_button.click()
 
 
-def retrieve_grid():
+def retrieve_grid(driver):
     board = WebDriverWait(driver, 2).until(
         EC.presence_of_element_located((By.CLASS_NAME, "styles-module_board__D_Xt6"))
     )
@@ -37,10 +36,11 @@ def retrieve_grid():
 
 
 def fetch_daily_grid():
+    driver = webdriver.Chrome()
     logger.info("opening grid board")
-    open_grid_board()
+    open_grid_board(driver)
     logger.info("retrieving grid")
-    grid = retrieve_grid()
+    grid = retrieve_grid(driver)
     prettyGrid = "\n".join([" ".join(row) for row in grid])
     logger.info(f"successfully retrieved grid:\n{prettyGrid}")
     return grid
