@@ -1,2 +1,5 @@
+from config.logger import logger
+
+
 def display_solutions(arg):
-    print("hello")
+    logger.info("body of display_solutions")

@@ -11,16 +11,7 @@ def main():
 
     # Fetch the daily grid
     if env == "d":
-        grid = [
-            ["R", "A", "M", "S", "I", "L"],
-            ["I", "T", "C", "N", "E", "A"],
-            ["A", "N", "I", "O", "B", "O"],
-            ["O", "E", "N", "R", "E", "T"],
-            ["I", "R", "D", "C", "F", "I"],
-            ["D", "R", "G", "U", "M", "C"],
-            ["B", "O", "T", "A", "I", "T"],
-            ["Y", "C", "N", "T", "O", "N"],
-        ]
+        grid = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
     else:
         grid = fetch_daily_grid()
 

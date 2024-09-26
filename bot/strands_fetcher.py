@@ -2,8 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
 from config.logger import logger
+import time
 
 # 8x6 grid
 
@@ -40,6 +40,7 @@ def fetch_daily_grid():
     logger.info("opening grid board")
     open_grid_board(driver)
     logger.info("retrieving grid")
+    logger.info("test")
     grid = retrieve_grid(driver)
     prettyGrid = "\n".join([" ".join(row) for row in grid])
     logger.info(f"successfully retrieved grid:\n{prettyGrid}")
