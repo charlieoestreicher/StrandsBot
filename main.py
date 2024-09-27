@@ -3,6 +3,7 @@ from bot.strands_solver import solve_strands
 from bot.strands_display import display_solutions
 from config.logger import logger
 import enchant
+from bot.trie import Trie
 
 env = "d"
 
@@ -20,6 +21,8 @@ def main():
         ]
     else:
         grid = fetch_daily_grid()
+
+    t = Trie.create_trie()
 
     # Solve the puzzle
     solutions = solve_strands(grid)

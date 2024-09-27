@@ -1,11 +1,9 @@
 from config.logger import logger
-import nltk
-from nltk.corpus import words
 from .strands_tile import Tile
-import enchant
+from .trie import Trie
 
 
-dic = enchant.Dict("en_US")
+trie = Trie.create_trie()
 
 
 def get_neighbors(tile, grid):
@@ -28,7 +26,7 @@ def get_neighbors(tile, grid):
 
 
 def is_valid_word(word):
-    if len(word) < 4 or not dic.check(word):
+    if len(word) < 4 or not trie.is_prefix_or_word(word):
         return False
     logger.info(f"found a word {word}")
     return True

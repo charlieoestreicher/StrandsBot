@@ -1,3 +1,11 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Optional
+import nltk
+from nltk.corpus import words
+
+
 @dataclass
 class Node:
     val: str
@@ -23,11 +31,12 @@ class Trie:
         self.root = Node("", {}, leaf=False)
 
     @classmethod
-    def from_file(cls, file_name: str) -> Trie:
+    def create_trie(cls) -> Trie:
         t = Trie()
-        with open(file_name) as f:
-            for line in f:
-                t.add(line.strip())
+        nltk.download("words")
+        word_list = words.words()
+        for word in word_list:
+            t.add(word.lower())
         return t
 
     def add(self, word: str):
