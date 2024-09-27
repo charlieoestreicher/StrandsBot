@@ -2,10 +2,10 @@ from config.logger import logger
 import nltk
 from nltk.corpus import words
 from .strands_tile import Tile
+import enchant
 
 
-nltk.download("words")
-valid_words = set(words.words())
+dic = enchant.Dict("en_US")
 
 
 def get_neighbors(tile, grid):
@@ -27,15 +27,25 @@ def get_neighbors(tile, grid):
     return neighbors
 
 
+def is_valid_word(word):
+    if len(word) < 4 or not dic.check(word):
+        return False
+    logger.info(f"found a word {word}")
+    return True
+
+
 def find_all_words(tile, word, grid, visited):
     # if not is_prefix(word):
     #     return []
     neighbors = get_neighbors(tile, grid)
     visited.append(tile)
-    ret = [word]
+    ret = []
+    if is_valid_word(word):
+        ret.append(word)
     for nbr in neighbors:
+        potential_word = word + nbr.letter
         if nbr not in visited:
-            found_words = find_all_words(nbr, word + nbr.letter, grid, visited)
+            found_words = find_all_words(nbr, potential_word, grid, visited)
             ret.extend(found_words)
     visited.remove(tile)
     return ret

@@ -2,6 +2,7 @@ from bot.strands_fetcher import fetch_daily_grid
 from bot.strands_solver import solve_strands
 from bot.strands_display import display_solutions
 from config.logger import logger
+import enchant
 
 env = "d"
 
@@ -11,7 +12,12 @@ def main():
 
     # Fetch the daily grid
     if env == "d":
-        grid = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"]]
+        grid = [
+            ["I", "R", "C", "I"],
+            ["R", "B", "T", "S"],
+            ["E", "L", "O", "R"],
+            ["L", "A", "H", "I"],
+        ]
     else:
         grid = fetch_daily_grid()
 
