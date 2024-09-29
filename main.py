@@ -14,15 +14,19 @@ def main():
     # Fetch the daily grid
     if env == "d":
         grid = [
-            ["I", "R", "C", "I"],
-            ["R", "B", "T", "S"],
-            ["E", "L", "O", "R"],
-            ["L", "A", "H", "I"],
+            ["H", "S", "F", "O", "N", "I"],
+            ["K", "A", "U", "A", "P", "O"],
+            ["O", "Q", "S", "L", "U", "N"],
+            ["H", "L", "H", "L", "M", "P"],
+            ["R", "A", "E", "N", "I", "K"],
+            ["A", "S", "R", "L", "P", "P"],
+            ["B", "H", "I", "V", "A", "T"],
+            ["I", "D", "A", "R", "E", "S"],
         ]
     else:
         grid = fetch_daily_grid()
 
-    t = Trie.create_trie()
+    grid = [[letter.lower() for letter in row] for row in grid]
 
     # Solve the puzzle
     solutions = solve_strands(grid)

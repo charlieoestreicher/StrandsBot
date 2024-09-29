@@ -18,7 +18,7 @@ def get_neighbors(tile, grid):
         (1, 1),
     ]
     neighbors = [
-        Tile(tile.x + dx, tile.y + dy, grid[tile.x + dx][tile.y + dy])
+        Tile(tile.x + dx, tile.y + dy, grid[tile.y + dy][tile.x + dx])
         for dx, dy in directions
         if 0 <= tile.x + dx < len(grid[0]) and 0 <= tile.y + dy < len(grid[1])
     ]
@@ -26,15 +26,20 @@ def get_neighbors(tile, grid):
 
 
 def is_valid_word(word):
-    if len(word) < 4 or not trie.is_prefix_or_word(word):
+    is_word = trie.is_prefix_or_word(word)[1]
+    if len(word) < 4 or not is_word:
         return False
-    logger.info(f"found a word {word}")
     return True
 
 
+def is_prefix(word):
+    is_prefix = trie.is_prefix_or_word(word)[0]
+    return is_prefix
+
+
 def find_all_words(tile, word, grid, visited):
-    # if not is_prefix(word):
-    #     return []
+    if not is_prefix(word):
+        return []
     neighbors = get_neighbors(tile, grid)
     visited.append(tile)
     ret = []
