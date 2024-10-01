@@ -8,3 +8,6 @@ class Tile:
         if isinstance(other, Tile):
             return self.x == other.x and self.y == other.y
         return False
+
+    def __hash__(self):
+        return hash((self.x, self.y))

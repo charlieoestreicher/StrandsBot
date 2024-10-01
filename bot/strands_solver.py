@@ -20,7 +20,7 @@ def get_neighbors(tile, grid):
     neighbors = [
         Tile(tile.x + dx, tile.y + dy, grid[tile.y + dy][tile.x + dx])
         for dx, dy in directions
-        if 0 <= tile.x + dx < len(grid[0]) and 0 <= tile.y + dy < len(grid[1])
+        if 0 <= (tile.x + dx) < len(grid[0]) and 0 <= tile.y + dy < len(grid)
     ]
     return neighbors
 
@@ -41,7 +41,7 @@ def find_all_words(tile, word, grid, visited):
     if not is_prefix(word):
         return []
     neighbors = get_neighbors(tile, grid)
-    visited.append(tile)
+    visited.add(tile)
     ret = []
     if is_valid_word(word):
         ret.append(word)
@@ -62,6 +62,6 @@ def solve_strands(grid):
     for y, row in enumerate(grid):
         for x, letter in enumerate(row):
             tile = Tile(x, y, letter)
-            all_words = find_all_words(tile, tile.letter, grid, [tile])
-            print(all_words)
+            all_words = find_all_words(tile, tile.letter, grid, visited={tile})
+            logger.info(f"{tile.letter}, {tile.x}, {tile.y}\n" + "\n".join(all_words))
     logger.info("body of solve_strands")

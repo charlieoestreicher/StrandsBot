@@ -14,19 +14,18 @@ def main():
     # Fetch the daily grid
     if env == "d":
         grid = [
-            ["H", "S", "F", "O", "N", "I"],
-            ["K", "A", "U", "A", "P", "O"],
-            ["O", "Q", "S", "L", "U", "N"],
-            ["H", "L", "H", "L", "M", "P"],
-            ["R", "A", "E", "N", "I", "K"],
-            ["A", "S", "R", "L", "P", "P"],
-            ["B", "H", "I", "V", "A", "T"],
-            ["I", "D", "A", "R", "E", "S"],
+            ["e", "h", "e", "a", "h", "t"],
+            ["h", "r", "v", "f", "l", "g"],
+            ["g", "t", "y", "e", "o", "i"],
+            ["r", "n", "a", "x", "r", "b"],
+            ["b", "e", "i", "i", "u", "c"],
+            ["a", "n", "s", "m", "t", "e"],
+            ["l", "t", "a", "l", "e", "r"],
+            ["e", "d", "d", "i", "m", "w"],
         ]
     else:
         grid = fetch_daily_grid()
-
-    grid = [[letter.lower() for letter in row] for row in grid]
+        grid = [[letter.lower() for letter in row] for row in grid]
 
     # Solve the puzzle
     solutions = solve_strands(grid)
